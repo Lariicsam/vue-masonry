@@ -1,10 +1,15 @@
-<script setup>
-defineProps({
-  msg: {
-    type: String,
-    required: true,
+<script>
+
+export default {
+  methods: {
+    submit() {
+      console.log("Newletter Submitted", {
+        name: this.newsletterName,
+        email: this.newsletterEmail,
+      });
+    },
   },
-});
+}
 </script>
 <template>
   <div
