@@ -1,6 +1,9 @@
 <template>
   <div class="icol center">
     <div class="irow center">
+      <h1>{{ myNonReactiveData }}</h1>
+    </div>
+    <div class="irow center">
       <h2>{{ counterData.title }}:</h2>
       <div class="btn" @click="decreaseCounter">-</div>
       <strong class="counter">{{ counterData.count }}</strong>
@@ -19,6 +22,7 @@
 import { ref, reactive } from "vue";
 export default {
   setup() {
+    const myNonReactiveData = "My static Non reactive Title"
     const counter = ref(0),
       counterTitle = ref("My Counter");
 
@@ -35,6 +39,7 @@ export default {
     };
 
     return {
+      myNonReactiveData,
       counter,
       counterTitle,
       increaseCounter,
