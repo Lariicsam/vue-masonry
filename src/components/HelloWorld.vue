@@ -1,56 +1,50 @@
 <template>
   <div class="icol center">
     <div class="irow center">
+      <h2>{{ counterData.title }}:</h2>
       <div class="btn" @click="decreaseCounter">-</div>
-      <strong class="counter">{{ counter }}</strong>
+      <strong class="counter">{{ counterData.count }}</strong>
       <div class="btn" @click="increaseCounter">+</div>
+    </div>
+    <div class="irow center">
+      <div class="edit">
+        <h4>Edit counter title:</h4>
+        <input v-model="counterData.title" type="text" />
+      </div>
     </div>
   </div>
 </template>
 
 <script>
-import { ref } from "vue";
+import { ref, reactive } from "vue";
 export default {
   setup() {
-    const counter = ref(0);
+    const counter = ref(0),
+      counterTitle = ref("My Counter");
 
     const increaseCounter = () => {
-      counter.value++;
+      //counter.value++;
+      counterData.count++;
     };
+
+    const counterData = reactive({ count: 0, title: "My Title" });
+
     const decreaseCounter = () => {
-      counter.value--;
+      //counter.value--;
+      counterData.count--;
     };
 
     return {
       counter,
+      counterTitle,
       increaseCounter,
-      decreaseCounter
+      decreaseCounter,
+      counterData,
     };
   },
 };
 </script>
 
-
-
-<!-- <script>
-export default {
-  data() {
-    return {
-      counter: 0,
-    };
-  },
-
-  methods: {
-    increaseCounter() {
-      this.counter++;
-    },
-
-    decreaseCounter() {
-      this.counter--;
-    },
-  },
-};
-</script> -->
 
 <style>
   .btn,
@@ -59,6 +53,11 @@ export default {
     padding: 20px;
     width: 100px;
     cursor: pointer;
+  }
+
+  .edit,
+  .edit > input {
+    color: darkgreen;
   }
 </style>
  
