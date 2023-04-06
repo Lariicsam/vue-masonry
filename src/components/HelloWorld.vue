@@ -1,43 +1,64 @@
-<script setup>
-defineProps({
-  msg: {
-    type: String,
-    required: true
-  }
-})
-</script>
-
 <template>
-  <div class="greetings">
-    <h1 class="green">{{ msg }}</h1>
-    <h3>
-      You’ve successfully created a project with
-      <a href="https://vitejs.dev/" target="_blank" rel="noopener">Vite</a> +
-      <a href="https://vuejs.org/" target="_blank" rel="noopener">Vue 3</a>.
-    </h3>
+  <div class="icol center">
+    <div class="irow center">
+      <div class="btn" @click="decreaseCounter">-</div>
+      <strong class="counter">{{ counter }}</strong>
+      <div class="btn" @click="increaseCounter">+</div>
+    </div>
   </div>
 </template>
 
-<style scoped>
-h1 {
-  font-weight: 500;
-  font-size: 2.6rem;
-  top: -10px;
-}
+<script>
+import { ref } from "vue";
+export default {
+  setup() {
+    const counter = ref(0);
 
-h3 {
-  font-size: 1.2rem;
-}
+    const increaseCounter = () => {
+      counter.value++;
+    };
+    const decreaseCounter = () => {
+      counter.value--;
+    };
 
-.greetings h1,
-.greetings h3 {
-  text-align: center;
-}
+    return {
+      counter,
+      increaseCounter,
+      decreaseCounter
+    };
+  },
+};
+</script>
 
-@media (min-width: 1024px) {
-  .greetings h1,
-  .greetings h3 {
-    text-align: left;
+
+
+<!-- <script>
+export default {
+  data() {
+    return {
+      counter: 0,
+    };
+  },
+
+  methods: {
+    increaseCounter() {
+      this.counter++;
+    },
+
+    decreaseCounter() {
+      this.counter--;
+    },
+  },
+};
+</script> -->
+
+<style>
+  .btn,
+  .counter {
+    font-size: 40px;
+    padding: 20px;
+    width: 100px;
+    cursor: pointer;
   }
-}
 </style>
+ 
