@@ -25,10 +25,17 @@
 </template>
 
 <script>
-import { reactive, computed } from "vue";
+import { reactive, computed, watch } from "vue";
 export default {
   setup() {
     const myNonReactiveData = "My static Non reactive Title";
+    const counterData = reactive({ count: 0, title: "My Title" });
+
+    watch(() => counterData.count,(newCount, oldCount) => {
+      if (oldCount === 20) {
+          alert("wow 20");
+        }
+    })
 
     const oddOrEven = computed(() => {
       if (counterData.count % 2 === 0) {
@@ -41,17 +48,17 @@ export default {
     const increaseCounter = (amount) => {
       counterData.count += amount;
     };
-    const counterData = reactive({ count: 0, title: "My Title" });
     const decreaseCounter = (amount) => {
       counterData.count -= amount;
     };
+    
 
     return {
       myNonReactiveData,
       increaseCounter,
       decreaseCounter,
       counterData,
-      oddOrEven
+      oddOrEven,
     };
   },
 };
